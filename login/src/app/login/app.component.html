@@ -1,0 +1,72 @@
+
+<nz-spin [nzSpinning]="isLoading" nSize="large">
+    <div class="login-canvas">
+        <div class="box-image" >
+            <div class="logo">
+                <div class="img">
+                    <img [src]="'logo.svg' | assetUrl" alt="">
+                </div>
+                <div class="text-m">
+                    Hệ thống VNPT EGOV UI
+                </div>
+            </div>
+            <div class="image">
+                <img [src]="'object.svg' | assetUrl" alt="">
+            </div>
+            <div class="copyright">
+
+                
+                SẢN PHẨM CỦA TẬP ĐOÀN <span class="img"><img [src]="'logo.svg'| assetUrl" alt=""></span>
+            </div>
+        </div>
+        <div class="box-form">
+            <div class="box-content">
+
+                <h1 class="main-title">Đăng nhập</h1>
+                
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập</label>
+                        <input type="text" class="form-control" nz-input id="username" formControlName="username" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <nz-input-group [nzSuffix]="suffixTemplate">
+                            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" nz-input id="password" formControlName="password"
+                                placeholder="Nhập mật khẩu">
+                        </nz-input-group>
+                        <ng-template #suffixTemplate>
+                            <span class="view-pass" [class]="passwordVisible ? 'isax-eye-slash1' : 'isax-eye1'"
+                                (click)="passwordVisible = !passwordVisible"></span>
+                        </ng-template>
+                    </div>
+                    <p style="color:red">{{message}}</p>
+                    <button type="submit" nz-button nzType="primary" class="btn-submit" [disabled]="loginForm.invalid" [nzLoading]="isLoading">Đăng nhập </button>
+                
+                    <!-- <div class="form-group">
+                        <div class="label-text">Mã xác nhận</div>
+                        <div class="input-captcha form-captcha">
+                            <input type="text" value="01234343" class="form-control" placeholder="Nhập mã xác nhận">
+                            <div class="captcha-code">
+                                <img src="assets/Capcha.svg" alt="">
+                            </div>
+                            <button class="btn btn-second">
+                                <span class="bc-reset"></span>
+                            </button>
+                        </div>
+                    </div> -->
+                </form>
+                <nz-divider nzText="Hoặc"></nz-divider>
+                <button type="submit" (click)="redirectSSO()" nz-button nzType="primary" nzGhost class="btn-submit">Đăng nhập SSO</button>
+                <!-- <div class="actions">
+                    <button class="btn btn-main fullw">Đăng nhập</button>
+                </div>
+                <div class="or">
+                    <span>hoặc</span>
+                </div>
+                <button class="btn btn-second fullw">Đăng nhập bằng tài khoản VNPT</button> -->
+            </div>
+        </div>
+    </div>
+</nz-spin>
